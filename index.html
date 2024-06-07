@@ -13,6 +13,7 @@
       height: 100vh;
       margin: 0;
       font-family: "Battle Angel", sans-serif;
+      overflow: hidden; /* Ensure no scroll bars */
     }
     input[type="color"] {
       margin-bottom: 20px;
@@ -28,13 +29,59 @@
       font-family: "Battle Angel", sans-serif;
       text-align: center;
     }
+    .random-image {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      animation: fadeInOut 3s linear;
+    }
+    @keyframes fadeInOut {
+      0%, 100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
   <p>What color is your Bugatti?</p>
   <input type="color" value="#f1f1f1">
   <img src="https://i.ibb.co/ckSNcch/image.png" alt="Car image">
-  <p>( CLICK ON BUGGATI TO CHANGE THE COLOR OF YOUR DREAMS )</p>
+  <p>( CLICK ON BUGATTI TO CHANGE THE COLOR OF YOUR DREAMS )</p>
   <p>BUY YOUR FUCKING FAVOURITE COLOR WITH $TOPG 8NH3AfwkizHmbVd83SSxc2YbsFmFL4m2BeepvL6upump </p>
+  <audio autoplay>
+    <source src="https://media.djlunatique.com/2022/10/andrew-tate-theme-song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script>
+    const images = [
+      'https://i.ibb.co/cgr43Wh/50512c1b456d80c8145a09bae4282400.png',
+      'https://i.ibb.co/0c89qJk/andrewtate-4819aa2ffe8a7ba8b601c447b39b583e.png',
+      'https://i.ibb.co/yNrmpGj/Andrew-Tate-PNG-File.png',
+      'https://i.ibb.co/dry8hjy/Andrew-Tate-PNG-Image.png',
+    ];
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function createRandomImage() {
+      const img = document.createElement('img');
+      img.src = images[getRandomInt(0, images.length - 1)];
+      img.className = 'random-image';
+      img.style.top = getRandomInt(0, window.innerHeight - 100) + 'px';
+      img.style.left = getRandomInt(0, window.innerWidth - 100) + 'px';
+
+      document.body.appendChild(img);
+
+      setTimeout(() => {
+        document.body.removeChild(img);
+      }, 7000); 
+    }
+
+    setInterval(createRandomImage, 1000);
+  </script>
 </body>
 </html>
